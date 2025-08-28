@@ -1,3 +1,13 @@
-<h1><?= htmlspecialchars($title) ?></h1>
-<p><?= htmlspecialchars($message) ?></p>
-<?php App\Core\RenderView::partial('layout/sidebar', ['itens' => ['Item 1', 'Item 2']]); ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $title; ?></title>
+    <link rel="stylesheet" href=""> <!-- usar o caminho do projeto a partir da raiz / -->
+</head>
+<body>
+    <h1>bem vindo ao home</h1>
+    <p>Messagem: <?= $message; ?></p>
+</body>
+</html>
