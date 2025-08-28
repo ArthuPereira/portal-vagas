@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+use App\Core\Core;
+use App\Http\Route;
 
-use App\Controllers\HomeController;
+require __DIR__ . '/vendor/autoload.php';
 
-$controller = new HomeController();
-$controller->index();
+Core::dispatch(Route::getRoutes());

@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Core\RenderView;
+use App\Utils\Render;
 
 class HomeController
 {
     public function index()
     {
-        RenderView::loadView('home', [
-            'title' => 'Página inicial',
-            'message' => 'Seja bem vindo ao meu site!!!' 
+        Render::load("home", [
+            "title" => "Título",
+            "message" => "Isso foi um exemplo base do projeto"
         ]);
     }
 }
