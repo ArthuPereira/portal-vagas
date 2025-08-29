@@ -12,13 +12,11 @@ class Core
 
         isset($_GET['url']) && $url .= $_GET['url'];
 
-        $prefixController = 'App\\Controllers\\';
-
         $url !== '/' && $url = rtrim($url, '/');
 
         foreach($routes as $route) {
             if ($route['url'] === $url) {
-                $controllerName = $prefixController . $route['controller'];
+                $controllerName = $route['controller'];
                 $method = $route['method'];
 
                 if (!class_exists($controllerName)) {
