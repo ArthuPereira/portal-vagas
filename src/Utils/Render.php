@@ -8,6 +8,12 @@ class Render
     {
         extract($args);
 
-        require_once __DIR__ . "/../Views/{$view}.php";
+        // pega o conteúdo da view usando um buffer e limpa ele
+        ob_start();
+        require __DIR__ . "/../Views/{$view}.php";
+        $content = ob_get_clean(); 
+
+        // Inclui o layout base
+        require __DIR__ . "/../Views/layout.php";
     }
 }
