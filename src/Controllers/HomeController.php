@@ -17,8 +17,7 @@ class HomeController
     public function index()
     {
         Render::load("home", [
-            "title" => "Título",
-            "message" => "Isso foi um exemplo base do projeto",
+            "title" => "Prefeitura de Nova Russas - Espaço + Emprego",
             "companies" => $this->recentlyAdded()
         ]);
     }

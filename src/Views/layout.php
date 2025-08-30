@@ -15,13 +15,11 @@
 </head>
 <body>
 
-    <?php include __DIR__ . "/partial/header.php" ?>
+    <?php include __DIR__ . "/partial/sidebar.php"; ?>
 
     <main>
         <?= $content ?>
     </main>
-
-    <?php include __DIR__ . "/partial/footer.php" ?>
     
 </body>
 </html>
