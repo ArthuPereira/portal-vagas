@@ -39,6 +39,6 @@ class Database
 
     public function getConnection(): PDO
     {
-        return $this->connection;
+        return self::$connection;
     }
 }
