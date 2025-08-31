@@ -80,7 +80,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="empresa-data">Cadastrada em: <?= date('d/m/Y', strtotime($company->created_at)); ?></small>
                             <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fas fa-eye"></i></a>
                             </div>
                         </div>
                     </div>

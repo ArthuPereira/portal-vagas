@@ -15,9 +15,9 @@ class CompanyRepository
         $this->pdo = Database::getInstance()->getConnection();
     }
 
-    public function getCompanies(): ?array
+    public function getRecentlyCompanies(): ?array
     {
-        $stmt = $this->pdo->query("SELECT id, cnpj, name, phone, address, created_at FROM companies");
+        $stmt = $this->pdo->query("SELECT id, cnpj, name, phone, address, created_at FROM companies ORDER BY created_at DESC LIMIT 3");
         $stmt->setFetchMode(PDO::FETCH_CLASS, CompanyModel::class);
 
         $companies = $stmt->fetchAll();

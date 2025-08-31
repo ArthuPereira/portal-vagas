@@ -24,7 +24,7 @@ class HomeController
     
     public function recentlyAdded()
     {
-        $recentlyAdded = $this->companyRepository->getCompanies();
+        $recentlyAdded = $this->companyRepository->getRecentlyCompanies();
         return $recentlyAdded;
     }
 }
