@@ -17,7 +17,6 @@ class HomeController
     public function index()
     {
         Render::load("home", [
-            "title" => "Prefeitura de Nova Russas - Espaço + Emprego",
             "companies" => $this->recentlyAdded()
         ]);
     }
