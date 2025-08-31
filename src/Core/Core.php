@@ -16,7 +16,12 @@ class Core
         $url !== '/' && $url = rtrim($url, '/');
 
         foreach($routes as $route) {
-            if ($route['url'] === $url) {
+            $pattern = preg_replace('/\{[a-zA-Z_][a-zA-Z0-9_]*\}/', '([a-zA-Z0-9_-]+)', $route['url']);
+            $pattern = "#^" . $pattern . "$#";
+
+            if (preg_match($pattern, $url, $matches)) {
+                array_shift($matches);
+
                 $controllerName = $route['controller'];
                 $method = $route['method'];
                 $repositoryName = $route['repository'] ?? null;
@@ -35,7 +40,7 @@ class Core
                     die("erro: método não existe na classe");
                 }
 
-                $controller->$method();
+                $controller->$method(...$matches);
                 return;
             }
         }
