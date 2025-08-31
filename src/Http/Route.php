@@ -11,12 +11,13 @@ class Route
         return self::$routes;
     }
 
-    public static function add(string $url, string $controller, string $method)
+    public static function add(string $url, string $controller, string $method, ?string $repository = null)
     {
         self::$routes[] = [
             'url' => $url,
             'controller' => $controller,
-            'method' => $method
+            'method' => $method,
+            'repository' => $repository
         ];
     }
 }
