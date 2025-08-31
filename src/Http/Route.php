@@ -11,7 +11,7 @@ class Route
         return self::$routes;
     }
 
-    public static function add(string $url, string $controller, string $method, string $repository)
+    public static function add(string $url, string $controller, string $method, ?string $repository = null)
     {
         self::$routes[] = [
             'url' => $url,
