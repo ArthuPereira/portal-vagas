@@ -6,6 +6,9 @@ class Render
 {
     public static function load(string $view, array $args = [])
     {
+        $flashMessages = Flash::all();
+        $args = array_merge($args, ['flash' => $flashMessages]);
+
         extract($args);
 
         // pega o conteúdo da view usando um buffer e limpa ele
