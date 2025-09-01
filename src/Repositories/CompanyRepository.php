@@ -15,6 +15,28 @@ class CompanyRepository
         $this->pdo = Database::getInstance()->getConnection();
     }
 
+    public function save(array $data): bool
+    {
+        $sql = "INSERT INTO companies (name, cnpj, email, responsible, cep, phone, address, city, status, description) 
+                VALUES 
+                (:name, :cnpj, :email, :responsible, :cep, :phone, :address, :city, :status, :description)";
+        
+        $stmt = $this->pdo->prepare($sql);
+
+        return $stmt->execute([
+            ":name" => $data['name'],
+            ":cnpj" => $data['cnpj'],
+            ":email" => $data['email'],
+            ":responsible" => $data['responsible'],
+            ":cep" => $data['cep'],
+            ":phone" => $data['phone'],
+            ":address" => $data['address'],
+            ":city" => $data['city'],
+            ":status" => $data['status'],
+            ":description" => $data['description']
+        ]);
+    }
+
     public function getRecentlyCompanies(): ?array
     {
         $stmt = $this->pdo->query("SELECT id, cnpj, name, phone, address, created_at FROM companies ORDER BY created_at DESC LIMIT 3");

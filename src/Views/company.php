@@ -102,13 +102,13 @@
     </div>
     
     <div class="mb-4">
-      <a href="curriculos.php?id=<?= $empresa['id']; ?>" class="btn btn-success me-2">Ver/Enviar Currículos</a>
-      <a href="vagas.php?id=<?= $empresa['id']; ?>" class="btn btn-primary">Ver/Cadastrar Vagas</a>
+      <a href="#" class="btn btn-success me-2">Ver/Enviar Currículos</a>
+      <a href="#" class="btn btn-primary">Ver/Cadastrar Vagas</a>
     </div>
 
     <div class="mt-4">
       <a href="/mvc-php/" class="btn btn-secondary">Voltar</a>
-      <a href="editar-empresa.php?id=<?= $empresa['id']; ?>" class="btn btn-outline-primary">Editar Empresa</a>
+      <a href="#" class="btn btn-outline-primary">Editar Empresa</a>
     </div>
   </div>
 </div>

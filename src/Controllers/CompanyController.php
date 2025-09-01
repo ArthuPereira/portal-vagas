@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Utils\Render;
 use App\Repositories\CompanyRepository;
-
+use App\Utils\Flash;
 
 class CompanyController
 {
@@ -21,6 +21,36 @@ class CompanyController
             "company" => $this->findById($id),
             "vacancies" => $this->getVancacies($id)
         ]);
+    }
+
+    public function form()
+    {
+        Render::load("formCompany");
+    }
+
+    public function create()
+    {
+        // caso de carregar a página por GET
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return Render::load("formCompany");
+        }
+
+        // caso de enviar para o repository e criar registro
+        $fields = ['name', 'cnpj', 'email', 'responsible', 'cep', 'phone', 'address', 'city', 'status', 'description'];
+        $formData = [];
+
+        foreach ($fields as $field) {
+            $formData[$field] = trim($_POST[$field] ?? '');
+        }
+
+        if (!$this->companyRepository->save($formData)) {
+            Flash::set('error', '❌ Falha ao cadastrar a empresa.');
+        } else {
+            Flash::set('success', '✅ Empresa cadastrada com sucesso!');
+        }
+
+        header("Location: /mvc-php/company/form");
+        exit;
     }
 
     public function findById(string $id)

@@ -8,12 +8,12 @@
 
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="#" class="nav-link active">
+      <a href="/mvc-php" class="nav-link active">
         <i class="fas fa-chart-line me-2"></i> Dashboard
       </a>
     </li>
     <li class="nav-item mt-2">
-      <a href="#" class="nav-link">
+      <a href="/mvc-php/company/form" class="nav-link">
         <i class="fas fa-building me-2"></i> Cadastrar Empresa
       </a>
     </li>
