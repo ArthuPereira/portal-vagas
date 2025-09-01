@@ -1,7 +1,7 @@
 <!-- Sidebar Desktop -->
 <div class="sidebar sidebar-desktop p-3">
   <div class="text-center mb-4">
-    <img src="assets/imagens/logo.png" alt="logo" class="img-fluid logo-prefeitura mb-2" />
+    <img src="/mvc-php/assets/imagens/logo.png" alt="logo" class="img-fluid logo-prefeitura mb-2" />
     <h6 class="mb-0">Prefeitura Municipal de Nova Russas</h6>
     <small>Espaço + Emprego</small>
   </div>
