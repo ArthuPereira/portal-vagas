@@ -53,6 +53,36 @@ class CompanyController
         exit;
     }
 
+    public function update(string $id)
+    {
+        // [GET] id -> informação -> view -> [POST] update -> flash -> header(inicial ? ou id no header...)
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $fields = ['name', 'cnpj', 'email', 'responsible', 'cep', 'phone', 'address', 'city', 'status', 'description'];
+            $formData = [];
+
+            foreach ($fields as $field) {
+                $formData[$field] = trim($_POST[$field] ?? '');
+            }
+            
+            $formData['id'] = trim($id ?? '');
+
+            if (!$this->companyRepository->update($formData)) {
+                Flash::set('error', 'Erro ao atualizar empresa:');
+            } else {
+                Flash::set('success', '✅ Alterações salvas com sucesso!');
+            }
+
+            header("Location: /mvc-php/");
+            exit;
+        } else {
+            $company = $this->findById($id);
+            Render::load("editCompany", [
+                "company" => $company
+            ]);
+        }
+    }
+
     public function findById(string $id)
     {
         $selectedCompany = $this->companyRepository->findById($id);

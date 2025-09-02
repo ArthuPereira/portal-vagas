@@ -108,7 +108,7 @@
 
     <div class="mt-4">
       <a href="/mvc-php/" class="btn btn-secondary">Voltar</a>
-      <a href="#" class="btn btn-outline-primary">Editar Empresa</a>
+      <a href="/mvc-php/company/update/<?= $company->id; ?>" class="btn btn-outline-primary">Editar Empresa</a>
     </div>
   </div>
 </div>

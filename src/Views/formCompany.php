@@ -16,7 +16,6 @@
 
     <div class="card shadow-sm">
       <div class="card-body">
-        <!-- ajeitar a parte de mensagens-->
         <?php if (!empty($flash['success'])): ?>
             <div class='alert alert-success mt-3 mx-auto'><?= $flash['success'] ?></div>
         <?php endif; ?>
