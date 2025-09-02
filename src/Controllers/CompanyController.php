@@ -19,7 +19,7 @@ class CompanyController
     {
         Render::load("company", [
             "company" => $this->findById($id),
-            "vacancies" => $this->getVancacies($id)
+            "vacancies" => $this->getVacancies($id)
         ]);
     }
 
@@ -89,7 +89,7 @@ class CompanyController
         return $selectedCompany;
     }
 
-    public function getVancacies(string $id)
+    public function getVacancies(string $id)
     {
         $vacancies = $this->companyRepository->getCompanyVacancies($id);
         return $vacancies;
