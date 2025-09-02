@@ -103,7 +103,7 @@
     
     <div class="mb-4">
       <a href="#" class="btn btn-success me-2">Ver/Enviar Currículos</a>
-      <a href="#" class="btn btn-primary">Ver/Cadastrar Vagas</a>
+      <a href="/mvc-php/vacancy/<?= $company->id; ?>" class="btn btn-primary">Ver/Cadastrar Vagas</a>
     </div>
 
     <div class="mt-4">
