@@ -16,7 +16,11 @@ class Core
         $url !== '/' && $url = rtrim($url, '/');
 
         foreach($routes as $route) {
-            $pattern = preg_replace('/\{[a-zA-Z_][a-zA-Z0-9_]*\}/', '([a-zA-Z0-9_-]+)', $route['url']);
+            $pattern = preg_replace(
+                '/\{[a-zA-Z_][a-zA-Z0-9_]*\}/',
+                '(?!update$|create$)([a-zA-Z0-9_-]+)',
+                $route['url']
+            );
             $pattern = "#^" . $pattern . "$#";
 
             if (preg_match($pattern, $url, $matches)) {
