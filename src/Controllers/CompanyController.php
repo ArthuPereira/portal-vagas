@@ -55,8 +55,6 @@ class CompanyController
 
     public function update(string $id)
     {
-        // [GET] id -> informação -> view -> [POST] update -> flash -> header(inicial ? ou id no header...)
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fields = ['name', 'cnpj', 'email', 'responsible', 'cep', 'phone', 'address', 'city', 'status', 'description'];
             $formData = [];

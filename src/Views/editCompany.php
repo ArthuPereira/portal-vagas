@@ -58,8 +58,8 @@
             <div class="col-md-4">
               <label class="form-label">Status</label>
               <select name="status" class="form-select" required>
-                <option value="Ativo" <?= $company->status == 'ATIVO' ? 'selected' : '' ?>>Ativo</option>
-                <option value="Em Negociacao" <?= $company->status == 'NEGOCIAÇÃO' ? 'selected' : '' ?>>Em Negociação</option>
+                <option value="Ativo" <?= $company->status == 'ATIVO' ? 'selected' : '' ?>>ATIVO</option>
+                <option value="Em Negociacao" <?= $company->status == 'NEGOCIAÇÃO' ? 'selected' : '' ?>>EM NEGOCIAÇÃO</option>
               </select>
             </div>
 

@@ -5,8 +5,10 @@ namespace App\Http;
 use App\Http\Route;
 use App\Controllers\HomeController;
 use App\Controllers\CompanyController;
+use App\Controllers\ResumeController;
 use App\Controllers\VacancyController;
 use App\Repositories\CompanyRepository;
+use App\Repositories\ResumeRepository;
 use App\Repositories\VacancyRepository;
 
 Route::add('/', HomeController::class, 'index', CompanyRepository::class);
@@ -20,3 +22,6 @@ Route::add('/company/{id}', CompanyController::class, 'show', CompanyRepository:
 
 Route::add('/vacancy/create/{id}', VacancyController::class, 'create', VacancyRepository::class);
 Route::add('/vacancy/{id}', VacancyController::class, 'show', VacancyRepository::class);
+
+Route::add('/resume/create/{id}', ResumeController::class, 'create', ResumeRepository::class);
+Route::add('/resume/{id}', ResumeController::class, 'show', ResumeRepository::class);
