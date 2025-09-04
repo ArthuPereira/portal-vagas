@@ -9,6 +9,14 @@
     </div>
 
     <div id="conteudo" class="p-4">
+        <?php if (!empty($flash['success'])): ?>
+            <div class='alert alert-success mt-3 mx-auto'><?= $flash['success'] ?></div>
+        <?php endif; ?>
+
+        <?php if (!empty($flash['error'])): ?>
+            <div class='alert alert-danger mt-3 mx-auto'><?= $flash['error'] ?></div>
+        <?php endif; ?>
+        
         <!-- Conteúdo carregado via AJAX será exibido aqui -->
         <h5 class="mb-4">Painel Administrativo</h5>
 

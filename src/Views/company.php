@@ -8,6 +8,14 @@
   </div>
 
   <div id="conteudo" class="p-4">
+    <?php if (!empty($flash['success'])): ?>
+        <div class='alert alert-success mt-3 mx-auto'><?= $flash['success'] ?></div>
+    <?php endif; ?>
+
+    <?php if (!empty($flash['error'])): ?>
+        <div class='alert alert-danger mt-3 mx-auto'><?= $flash['error'] ?></div>
+    <?php endif; ?>
+    
     <h5 class="mb-4">Detalhes da Empresa</h5>
 
     <div class="card shadow-sm mb-4">
@@ -102,13 +110,13 @@
     </div>
     
     <div class="mb-4">
-      <a href="curriculos.php?id=<?= $empresa['id']; ?>" class="btn btn-success me-2">Ver/Enviar Currículos</a>
-      <a href="vagas.php?id=<?= $empresa['id']; ?>" class="btn btn-primary">Ver/Cadastrar Vagas</a>
+      <a href="/mvc-php/resume/<?= $company->id; ?>" class="btn btn-success me-2">Ver/Enviar Currículos</a>
+      <a href="/mvc-php/vacancy/<?= $company->id; ?>" class="btn btn-primary">Ver/Cadastrar Vagas</a>
     </div>
 
     <div class="mt-4">
       <a href="/mvc-php/" class="btn btn-secondary">Voltar</a>
-      <a href="editar-empresa.php?id=<?= $empresa['id']; ?>" class="btn btn-outline-primary">Editar Empresa</a>
+      <a href="/mvc-php/company/update/<?= $company->id; ?>" class="btn btn-outline-primary">Editar Empresa</a>
     </div>
   </div>
 </div>

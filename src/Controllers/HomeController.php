@@ -14,16 +14,19 @@ class HomeController
         $this->companyRepository = $companyRepository;
     }
     
-    public function index()
+    /**
+     * carrega a página inicial
+    */
+    public function index(): void
     {
         Render::load("home", [
-            "companies" => $this->recentlyAdded()
+            "companies" => $this->getCompanies()
         ]);
     }
     
-    public function recentlyAdded()
+    public function getCompanies(): array
     {
-        $recentlyAdded = $this->companyRepository->getRecentlyCompanies();
-        return $recentlyAdded;
+        $companies = $this->companyRepository->getRecentlyCompanies();
+        return $companies;
     }
 }
