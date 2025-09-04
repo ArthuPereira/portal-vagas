@@ -14,13 +14,19 @@ class ResumeModel
     public $path;
     public $created_at;
 
+    // array completo do $_FILES
     public $resume;
-    public $vacancy_name;
+
+    // campos extras para querys com join
+    public $vacancy_name; 
     public $company_id;
 
     public function __construct() {}
 
-    public static function fromArray(array $data) : self
+    /**
+     * instancia uma model a partir de um array
+    */
+    public static function fromArray(array $data): self
     {
         $instance = new self();
 
@@ -29,12 +35,16 @@ class ResumeModel
         $instance->email      = $data['email'];
         $instance->phone      = $data['phone'];
         $instance->company_id = $data['company_id'];
-        $instance->resume     = $data['resume']; // array completo do $_FILES
+        $instance->resume     = $data['resume'];
 
         return $instance;
     }
 
-    public function validateUpload() : void
+    /**
+     * valida: erro, extensão e tamanho do arquivo
+     * * o arquivo 'está' no atributo $resume
+    */
+    public function validateUpload(): void
     {
         if ($_FILES['resume']['error'] !== UPLOAD_ERR_OK) {
             Flash::set('error', 'Erro no upload');
@@ -58,10 +68,14 @@ class ResumeModel
         }
     }
 
-    public function saveFile(string $uploadDir) : void
+    /**
+     * salva o arquivo enviado com um nome modificado no caminho especificado
+     * * atualiza $path com o novo nome, que irá para o campo 'path' do banco de dados
+    */
+    public function saveFile(string $uploadDir): void
     {
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
+            mkdir($uploadDir, 0755);
         }
 
         $this->validateUpload();

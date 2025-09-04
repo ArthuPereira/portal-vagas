@@ -7,9 +7,6 @@ use App\Models\ResumeModel;
 use App\Models\VacancyModel;
 use PDO;
 
-require_once __DIR__ . '/../Core/Database.php';
-require_once __DIR__ . '/../Models/ResumeModel.php';
-
 class ResumeRepository
 {
     private PDO $pdo;
@@ -19,21 +16,27 @@ class ResumeRepository
         $this->pdo = Database::getInstance()->getConnection();
     }
 
-    public function save(ResumeModel $resume) : bool 
+    public function save(ResumeModel $resume): bool 
     {
-        $sql = "INSERT INTO resumes (vacancy_id, name, email, path, phone) VALUES (:vacancy_id, :name, :email, :path, :phone)";
+        $sql = "
+                INSERT INTO 
+                    resumes (vacancy_id, name, email, path, phone) 
+                VALUES
+                    (:vacancy_id, :name, :email, :path, :phone)
+        ";
+
         $stmt = $this->pdo->prepare($sql);
         
         return $stmt->execute([
             ':vacancy_id' => $resume->vacancy_id,
-            ':name' => $resume->name,
-            ':email' => $resume->email,
-            ':path' => $resume->path,
-            ':phone' => $resume->phone
+            ':name'       => $resume->name,
+            ':email'      => $resume->email,
+            ':path'       => $resume->path,
+            ':phone'      => $resume->phone
         ]);
     }
 
-    public function findResumesByCompany($CompanyId) : array
+    public function findResumesByCompany($CompanyId): array
     {
         $stmt = $this->pdo->prepare("
             Select resumes.*, vacancies.name AS vacancy_name
@@ -48,7 +51,7 @@ class ResumeRepository
         return $resumes;
     }
 
-    public function findVacanciesByCompany($CompanyId) : array
+    public function findVacanciesByCompany($CompanyId): array
     {
         $stmt = $this->pdo->prepare("SELECT id, name FROM vacancies WHERE company_id = :id");
         $stmt->execute([":id" => $CompanyId]);
@@ -57,12 +60,12 @@ class ResumeRepository
         return $vacancies;
     }
 
-    public function findCompanyNameById($CompanyId) : string
+    public function findCompanyNameById($CompanyId): ?string
     {
         $stmt = $this->pdo->prepare("SELECT name from companies WHERE id = :id");
         $stmt->execute([":id" => $CompanyId]);
 
         $companyName = $stmt->fetchColumn();
-        return $companyName;
+        return $companyName ?: null;
     }
 }

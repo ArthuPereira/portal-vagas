@@ -9,6 +9,12 @@ class Database
 {
     private static ?Database $instance = null;
     private static ?PDO $connection = null;
+    
+    /**
+     * OBS: 
+     * Esses métodos extras são pra evitar de criar uma instância do banco pra cada repository, não é problema real do nosso caso,
+     * é mais eu querendo botar em prática design pattern que eu andei estudando por aí.
+     */
 
     private function __construct(
         private string $host = "localhost",

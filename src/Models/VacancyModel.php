@@ -12,7 +12,5 @@ class VacancyModel
     public $wage;
     public $created_at;
 
-    public function __construct() {
-        
-    }
+    public function __construct() {}
 }

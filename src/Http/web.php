@@ -13,7 +13,8 @@ use App\Repositories\VacancyRepository;
 
 Route::add('/', HomeController::class, 'index', CompanyRepository::class);
 
-// * por enquanto não vou mudar o regex do core, então rotas dinâmica TEM que vir depois das estáticas pra não acabar engolindo elas
+// por conta de como o regex do core funciona as rotas mais abrangentes devem ficar mais pro final
+// motivo: elas vão dar match e vão pegar tudo como id, aí no lugar de iniciar com um número inicia com "form"
 
 Route::add('/company/form', CompanyController::class, 'form', CompanyRepository::class);
 Route::add('/company/create', CompanyController::class, 'create', CompanyRepository::class);

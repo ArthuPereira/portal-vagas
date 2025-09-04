@@ -8,6 +8,14 @@
   </div>
 
   <div id="conteudo" class="p-4">
+    <?php if (!empty($flash['success'])): ?>
+        <div class='alert alert-success mt-3 mx-auto'><?= $flash['success'] ?></div>
+    <?php endif; ?>
+
+    <?php if (!empty($flash['error'])): ?>
+        <div class='alert alert-danger mt-3 mx-auto'><?= $flash['error'] ?></div>
+    <?php endif; ?>
+    
     <h5 class="mb-4">Detalhes da Empresa</h5>
 
     <div class="card shadow-sm mb-4">

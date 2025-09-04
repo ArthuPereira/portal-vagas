@@ -18,6 +18,7 @@
     <?php include __DIR__ . "/partial/sidebar.php"; ?>
 
     <main>
+        <!-- todo o conteúdo da view é jogado aqui dentro -->
         <?= $content ?>
     </main>
     
