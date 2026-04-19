@@ -1,0 +1,3 @@
+## UM GRANDE ADENDO...
+Esse projeto perdeu um pouco do *template* por conta do projeto do portal de empregos da prefeitura.  
+Então, caso foir usar isso (o que é bem relevante considerando docker+ministack+S3) é pra tirar daqui o que for usar, capiche?
