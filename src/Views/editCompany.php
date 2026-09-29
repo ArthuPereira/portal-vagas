@@ -4,16 +4,17 @@
     <button class="btn btn-outline-dark d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
       <i class="fas fa-bars"></i>
     </button>
-    <h5 class="m-0">Programa Espaço + Emprego</h5>
-    <span class="text-muted small d-none d-sm-inline">Município de Nova Russas - Sistema Oficial</span>
+    <h5 class="m-0">Portal de Carreiras &amp; Oportunidades</h5>
+    <span class="text-muted small d-none d-sm-inline">Banco de Talentos &amp; Envio de Currículos</span>
   </div>
 
+  <?php $baseUrl = defined('BASE_URL') ? BASE_URL : ''; ?>
   <div id="conteudo" class="p-4">
      <h5 class="mb-4">Editar Empresa</h5>
 
     <div class="card shadow-sm">
       <div class="card-body">
-        <form method="POST" action="/mvc-php/company/update/<?= $company->id; ?>">
+        <form method="POST" action="<?= $baseUrl ?>/company/update/<?= $company->id; ?>">
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">Nome da Empresa</label>
@@ -69,7 +70,7 @@
             </div>
 
             <div class="col-md-12 text-end">
-              <a href="/mvc-php/" class="btn btn-secondary">Cancelar</a>
+              <a href="<?= $baseUrl ?: '/' ?>" class="btn btn-secondary">Cancelar</a>
               <button type="submit" class="btn btn-success">Salvar Alterações</button>
             </div>
           </div>

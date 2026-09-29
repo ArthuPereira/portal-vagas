@@ -1,8 +1,10 @@
 <div class="main-content">
   <div class="topbar">
-    <h5 class="m-0">Currículos da Empresa <?= $companyName; ?></h5>
+    <h5 class="m-0">Currículos da Empresa: <?= htmlspecialchars($companyName); ?></h5>
+    <span class="text-muted small d-none d-sm-inline">Envio de Currículos para Empresas</span>
   </div>
 
+  <?php $baseUrl = defined('BASE_URL') ? BASE_URL : ''; ?>
   <div id="conteudo" class="p-4">
 
     <div class="card shadow-sm mb-4">
@@ -16,7 +18,7 @@
             <div class='alert alert-danger mt-3 mx-auto'><?= $flash['error'] ?></div>
         <?php endif; ?>
 
-        <form method="POST" action="/mvc-php/resume/create/<?= $companyId; ?>" enctype="multipart/form-data" class="row g-3">
+        <form method="POST" action="<?= $baseUrl ?>/resume/create/<?= $companyId; ?>" enctype="multipart/form-data" class="row g-3">
           <div class="col-md-6">
             <label for="name" class="form-label">Nome *</label>
             <input type="text" id="name" name="name" class="form-control" required />
@@ -76,7 +78,7 @@
                   <td><?= htmlspecialchars($resume->vacancy_name); ?></td>
                   <td>
                     <?php if ($resume->path): ?>
-                      <a href="/mvc-php/uploads/resumes/<?= rawurlencode($resume->path); ?>" target="_blank" rel="noopener noreferrer">Ver arquivo</a>
+                      <a href="<?= $baseUrl ?>/uploads/resumes/<?= rawurlencode($resume->path); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-download me-1"></i> Ver arquivo</a>
                     <?php else: ?>
                       -
                     <?php endif; ?>
@@ -96,7 +98,7 @@
     </div>
 
     <div class="mt-4">
-      <a href="/mvc-php/company/<?= $companyId; ?>" class="btn btn-secondary">Voltar</a>
+      <a href="<?= $baseUrl ?>/company/<?= $companyId; ?>" class="btn btn-secondary">Voltar</a>
     </div>
   </div>
 </div>

@@ -1,8 +1,10 @@
 <div class="main-content">
   <div class="topbar">
-    <h5 class="m-0">Vagas da Empresa <?=  $companyName; ?></h5>
+    <h5 class="m-0">Vagas da Empresa: <?= htmlspecialchars($companyName); ?></h5>
+    <span class="text-muted small d-none d-sm-inline">Gestão de Vagas Disponíveis</span>
   </div>
 
+  <?php $baseUrl = defined('BASE_URL') ? BASE_URL : ''; ?>
   <div id="conteudo" class="p-4">
     <div class="card shadow-sm mb-4">
       <div class="card-body">
@@ -15,7 +17,7 @@
             <div class='alert alert-danger mt-3 mx-auto'><?= $flash['error'] ?></div>
         <?php endif; ?>
 
-        <form method="POST" action="/mvc-php/vacancy/create/<?= $companyId; ?>" class="row g-3">
+        <form method="POST" action="<?= $baseUrl ?>/vacancy/create/<?= $companyId; ?>" class="row g-3">
           <input type="hidden" name="acao" value="cadastrar_vaga" />
 
           <div class="col-md-6">
@@ -78,7 +80,7 @@
     </div>
 
     <div class="mt-4">
-      <a href="/mvc-php/company/<?= $companyId; ?>" class="btn btn-secondary">Voltar</a>
+      <a href="<?= $baseUrl ?>/company/<?= $companyId; ?>" class="btn btn-secondary">Voltar</a>
     </div>
   </div>
 </div>

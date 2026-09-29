@@ -22,8 +22,9 @@ body {
     color: #fff;
 }
 
-.logo-prefeitura {
+.logo-portal {
     height: 50px;
+    object-fit: contain;
 }
 
 .topbar {

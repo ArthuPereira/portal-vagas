@@ -4,8 +4,8 @@
         <button class="btn btn-outline-dark d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
             <i class="fas fa-bars"></i>
         </button>
-        <h5 class="m-0">Programa Espaço + Emprego</h5>
-        <span class="text-muted small d-none d-sm-inline">Município de Nova Russas - Sistema Oficial</span>
+        <h5 class="m-0">Portal de Carreiras &amp; Oportunidades</h5>
+        <span class="text-muted small d-none d-sm-inline">Banco de Talentos &amp; Envio de Currículos</span>
     </div>
 
     <div id="conteudo" class="p-4">
@@ -88,7 +88,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="empresa-data">Cadastrada em: <?= date('d/m/Y', strtotime($company->created_at)); ?></small>
                             <div class="d-flex gap-2">
-                                <a href="/mvc-php/company/<?= $company->id;?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fas fa-eye"></i></a>
+                                <a href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/company/<?= $company->id;?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fas fa-eye"></i></a>
                             </div>
                         </div>
                     </div>

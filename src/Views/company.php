@@ -3,8 +3,8 @@
     <button class="btn btn-outline-dark d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
       <i class="fas fa-bars"></i>
     </button>
-    <h5 class="m-0">Programa Espaço + Emprego</h5>
-    <span class="text-muted small d-none d-sm-inline">Município de Nova Russas - Sistema Oficial</span>
+    <h5 class="m-0">Portal de Carreiras &amp; Oportunidades</h5>
+    <span class="text-muted small d-none d-sm-inline">Banco de Talentos &amp; Envio de Currículos</span>
   </div>
 
   <div id="conteudo" class="p-4">
@@ -109,14 +109,15 @@
       </div>
     </div>
     
+    <?php $baseUrl = defined('BASE_URL') ? BASE_URL : ''; ?>
     <div class="mb-4">
-      <a href="/mvc-php/resume/<?= $company->id; ?>" class="btn btn-success me-2">Ver/Enviar Currículos</a>
-      <a href="/mvc-php/vacancy/<?= $company->id; ?>" class="btn btn-primary">Ver/Cadastrar Vagas</a>
+      <a href="<?= $baseUrl ?>/resume/<?= $company->id; ?>" class="btn btn-success me-2"><i class="fas fa-file-alt me-1"></i> Ver/Enviar Currículos</a>
+      <a href="<?= $baseUrl ?>/vacancy/<?= $company->id; ?>" class="btn btn-primary"><i class="fas fa-briefcase me-1"></i> Ver/Cadastrar Vagas</a>
     </div>
 
     <div class="mt-4">
-      <a href="/mvc-php/" class="btn btn-secondary">Voltar</a>
-      <a href="/mvc-php/company/update/<?= $company->id; ?>" class="btn btn-outline-primary">Editar Empresa</a>
+      <a href="<?= $baseUrl ?: '/' ?>" class="btn btn-secondary">Voltar</a>
+      <a href="<?= $baseUrl ?>/company/update/<?= $company->id; ?>" class="btn btn-outline-primary">Editar Empresa</a>
     </div>
   </div>
 </div>
