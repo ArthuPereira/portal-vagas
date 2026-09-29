@@ -20,9 +20,10 @@ class VacancyController
     */
     public function show(int $id)
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         if ($id < 0) {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/");
             exit;
         }
 
@@ -38,9 +39,10 @@ class VacancyController
     */
     public function create($id)
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             Flash::set('error', 'Acesso inválido');
-            header("Location: /mvc-php/");
+            header("Location: {$baseUrl}/");
             exit;
         }
 
@@ -59,14 +61,14 @@ class VacancyController
 
             $this->vacancyRepository->save($formData);
             
-            Flash::set('success', '✅ Vaga cadastrada com sucesso!');
+            Flash::set('success', 'Vaga cadastrada com sucesso!');
 
         } catch (\Throwable $e) {
-            Flash::set('error', '❌ Falha ao criar a vaga: ' . $e->getMessage());
+            Flash::set('error', 'Falha ao criar a vaga: ' . $e->getMessage());
             
         }
 
-        header("Location: /mvc-php/vacancy/" . $id);
+        header("Location: {$baseUrl}/vacancy/" . $id);
         exit;
     }
 
@@ -82,11 +84,12 @@ class VacancyController
     */
     public function getCompanyName(int $companyId): string 
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         $companyName = $this->vacancyRepository->companyNameById($companyId);
 
         if (is_null($companyName)) {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/");
             exit;
         }
 

@@ -10,9 +10,23 @@ class Core
     {
         $url = '/';
 
-        isset($_GET['url']) && $url .= $_GET['url'];
+        if (isset($_GET['url'])) {
+            $url .= ltrim($_GET['url'], '/');
+        }
 
-        $url !== '/' && $url = rtrim($url, '/');
+        if ($url !== '/') {
+            $url = rtrim($url, '/');
+        }
+
+        // Remove prefixo /mvc-php ou BASE_URL se estiver presente na rota
+        if (defined('BASE_URL') && BASE_URL !== '' && str_starts_with($url, BASE_URL)) {
+            $url = substr($url, strlen(BASE_URL)) ?: '/';
+        } elseif (str_starts_with($url, '/mvc-php')) {
+            $url = substr($url, strlen('/mvc-php')) ?: '/';
+        }
+        if ($url === '' || $url[0] !== '/') {
+            $url = '/' . $url;
+        }
 
         foreach($routes as $route) {
             // regex que dá match com as rotas cadastradas

@@ -22,9 +22,10 @@ class CompanyController
     */
     public function show(int $id): void
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         if ($id < 0) {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/");
             exit;
         }
 
@@ -48,10 +49,11 @@ class CompanyController
     */
     public function create(): void
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         // caso de carregar a página por GET
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/company/form");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/company/form");
             exit;
         }
 
@@ -69,12 +71,12 @@ class CompanyController
 
             $companyId = $this->companyRepository->save($formData);
             
-            Flash::set('success', '✅ Empresa cadastrada com sucesso!');
-            header("Location: /mvc-php/company/" . $companyId);
+            Flash::set('success', 'Empresa cadastrada com sucesso!');
+            header("Location: {$baseUrl}/company/" . $companyId);
             exit;
         } catch (\Throwable $e) {
-            Flash::set('error', '❌ Falha ao cadastrar a empresa: ' . $e->getMessage());
-            header("Location: /mvc-php/company/form");
+            Flash::set('error', 'Falha ao cadastrar a empresa: ' . $e->getMessage());
+            header("Location: {$baseUrl}/company/form");
             exit;
         }
     }
@@ -85,9 +87,10 @@ class CompanyController
     */
     public function update(int $id): void
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         if ($id < 0) {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/");
             exit;
         }
 
@@ -113,16 +116,16 @@ class CompanyController
 
             $this->companyRepository->update($formData);
             
-            Flash::set('success', '✅ Empresa atualizada com sucesso!');
-            header("Location: /mvc-php/company/" . $id);
+            Flash::set('success', 'Empresa atualizada com sucesso!');
+            header("Location: {$baseUrl}/company/" . $id);
             exit;
         } catch (\Throwable $e) {
-            Flash::set('error', '❌ Erro ao atualizar a empresa: ' . $e->getMessage());
-            header("Location: /mvc-php/company/" . $id);
+            Flash::set('error', 'Erro ao atualizar a empresa: ' . $e->getMessage());
+            header("Location: {$baseUrl}/company/" . $id);
             exit;
         }
 
-        header("Location: /mvc-php/");
+        header("Location: {$baseUrl}/");
         exit;
     }
 
@@ -132,11 +135,12 @@ class CompanyController
     */
     public function findById(int $id): CompanyModel
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         $selectedCompany = $this->companyRepository->findCompanyById($id);
 
         if (is_null($selectedCompany)) {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/");
             exit;
         }
 

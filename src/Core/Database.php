@@ -16,21 +16,38 @@ class Database
      * é mais eu querendo botar em prática design pattern que eu andei estudando por aí.
      */
 
-    private function __construct(
-        private string $host = "localhost",
-        private string $database = "espaco_emprego",
-        private string $user = "root",
-        private string $password = "1234",
-    ) {
-        try {
-            self::$connection = new PDO(
-                "mysql:host={$this->host};dbname={$this->database};charset=utf8mb4",
-                $this->user,
-                $this->password
-            );
-            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die("Erro na conexão: " . $e->getMessage());
+    private string $host;
+    private string $database;
+    private string $user;
+    private string $password;
+    private string $port;
+
+    private function __construct()
+    {
+        $this->host = getenv('DB_HOST') ?: 'db';
+        $this->database = getenv('DB_DATABASE') ?: (getenv('DB_NAME') ?: 'curriculos_db');
+        $this->user = getenv('DB_USER') ?: 'curriculos_user';
+        $this->password = getenv('DB_PASSWORD') !== false ? (string) getenv('DB_PASSWORD') : 'curriculos_pass';
+        $this->port = getenv('DB_PORT') ?: '5432';
+
+        $maxRetries = 10;
+        $retryDelay = 2;
+
+        for ($attempt = 1; $attempt <= $maxRetries; $attempt++) {
+            try {
+                self::$connection = new PDO(
+                    "pgsql:host={$this->host};port={$this->port};dbname={$this->database}",
+                    $this->user,
+                    $this->password
+                );
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                return;
+            } catch (PDOException $e) {
+                if ($attempt === $maxRetries) {
+                    die("Erro na conexão com o banco de dados: " . $e->getMessage());
+                }
+                sleep($retryDelay);
+            }
         }
     }
 

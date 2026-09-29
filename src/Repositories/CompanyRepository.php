@@ -22,6 +22,7 @@ class CompanyRepository
                     companies (name, cnpj, email, responsible, cep, phone, address, city, status, description) 
                 VALUES 
                     (:name, :cnpj, :email, :responsible, :cep, :phone, :address, :city, :status, :description)
+                RETURNING id
         ";
         
         $stmt = $this->pdo->prepare($sql);
@@ -40,7 +41,8 @@ class CompanyRepository
         ]);
 
         if ($state) {
-            return (int) $this->pdo->lastInsertId();
+            $id = $stmt->fetchColumn();
+            return $id !== false ? (int) $id : null;
         }
 
         return null;

@@ -21,9 +21,10 @@ class ResumeController
     */
     public function show(int $companyId): void
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         if ($companyId < 0) {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/");
             exit;
         }
 
@@ -41,9 +42,10 @@ class ResumeController
     */
     public function create($id): void 
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             Flash::set('error', 'Acesso inválido');
-            header("Location: /mvc-php/");
+            header("Location: {$baseUrl}/");
             exit;
         }
 
@@ -67,12 +69,12 @@ class ResumeController
             $this->resumeRepository->save($resume);
 
             Flash::set('success', 'Currículo enviado com sucesso!');
-            header("Location: /mvc-php/resume/" . $id);
+            header("Location: {$baseUrl}/resume/" . $id);
             exit;
 
         } catch (\Exception $e) {
             Flash::set('error', 'Erro ao enviar o currículo: ' . $e->getMessage());
-            header("Location: /mvc-php/resume/" . $id);
+            header("Location: {$baseUrl}/resume/" . $id);
             exit;
         }
     }
@@ -89,11 +91,12 @@ class ResumeController
     */
     public function getCompanyName(int $companyId): string
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         $companyName = $this->resumeRepository->findCompanyNameById($companyId);
 
         if (is_null($companyName)) {
-            Flash::set('error', '❌ Acesso inválido!');
-            header("Location: /mvc-php/");
+            Flash::set('error', 'Acesso inválido!');
+            header("Location: {$baseUrl}/");
             exit;
         }
 

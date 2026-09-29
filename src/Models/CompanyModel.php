@@ -27,7 +27,7 @@ class CompanyModel
         $instance = new self();
 
         $instance->name        = $data['name'];
-        $instance->cnpj        = $data['name'];
+        $instance->cnpj        = $data['cnpj'];
         $instance->email       = $data['email'];
         $instance->responsible = $data['responsible'];
         $instance->cep         = $data['cep'];

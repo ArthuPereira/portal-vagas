@@ -46,9 +46,10 @@ class ResumeModel
     */
     public function validateUpload(): void
     {
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
         if ($_FILES['resume']['error'] !== UPLOAD_ERR_OK) {
             Flash::set('error', 'Erro no upload');
-            header("Location: /mvc-php/resume/" . $this->company_id);
+            header("Location: {$baseUrl}/resume/" . $this->company_id);
             exit;
         }
         
@@ -57,13 +58,13 @@ class ResumeModel
 
         if (!in_array($ext, $allowedExtensions)) {
             Flash::set('error', 'Formato inválido. Permitido: PDF/DOC/DOCX');
-            header("Location: /mvc-php/resume/" . $this->company_id);
+            header("Location: {$baseUrl}/resume/" . $this->company_id);
             exit;
         }
 
         if ($this->resume['size'] > 5 * 1024 * 1024) { // 5MB
             Flash::set('error', 'Arquivo muito grande (máx 5MB)');
-            header("Location: /mvc-php/resume/" . $this->company_id);
+            header("Location: {$baseUrl}/resume/" . $this->company_id);
             exit;
         }
     }
@@ -75,7 +76,7 @@ class ResumeModel
     public function saveFile(string $uploadDir): void
     {
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755);
+            mkdir($uploadDir, 0775, true);
         }
 
         $this->validateUpload();
@@ -86,8 +87,9 @@ class ResumeModel
         $target = $uploadDir . '/' . $filename;
 
         if (!move_uploaded_file($this->resume['tmp_name'], $target)) {
+            $baseUrl = defined('BASE_URL') ? BASE_URL : '';
             Flash::set('error', 'Falha ao salvar arquivo');
-            header("Location: /mvc-php/resume/" . $this->company_id);
+            header("Location: {$baseUrl}/resume/" . $this->company_id);
             exit;
         }
 
