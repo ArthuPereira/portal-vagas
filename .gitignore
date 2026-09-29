@@ -1,4 +1,5 @@
 /vendor/
+.env
 
 # ignora curricúlos mas deixa as pastas no lugar (pra evitar problema de permissão do linux)
 /uploads/resumes/*

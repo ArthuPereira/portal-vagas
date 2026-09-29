@@ -1,0 +1,46 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: curriculos_app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: ${DB_DATABASE:-curriculos_db}
+      DB_USER: ${DB_USER:-curriculos_user}
+      DB_PASSWORD: ${DB_PASSWORD:-curriculos_pass}
+      BASE_URL: ${BASE_URL:-}
+    volumes:
+      - .:/var/www/html
+      - app_uploads:/var/www/html/uploads/resumes
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    container_name: curriculos_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-curriculos_db}
+      POSTGRES_USER: ${DB_USER:-curriculos_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-curriculos_pass}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "${DB_PORT_HOST:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  db_data:
+  app_uploads:
